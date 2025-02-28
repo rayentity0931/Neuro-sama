@@ -107,33 +107,59 @@ tagSearch.addEventListener('input', function() {
 
 //#tag
 document.addEventListener("DOMContentLoaded", () => {
+    const tagSearch = document.getElementById("tagSearch");
     const gallery = document.getElementById("gallery");
     const tagButtons = document.querySelectorAll(".tag");
 
-    function renderImages(filterTag = null) {
+    function loadImages() {
         gallery.innerHTML = ""; // 清空畫廊
 
         imageData.forEach(({ src, tags }) => {
-            if (!filterTag || filterTag === "all" || tags.includes(filterTag)) {
-                const img = document.createElement("img");
-                img.src = src;
-                img.classList.add("gallery-item");
-                gallery.appendChild(img);
+            const imageDiv = document.createElement("div");
+            imageDiv.classList.add("image");
+            imageDiv.setAttribute("data-tags", tags.join(", "));
+
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = "Loading...";
+            img.classList.add("gallery-item");
+
+            imageDiv.appendChild(img);
+            gallery.appendChild(imageDiv);
+        });
+    }
+
+    function filterImages(query) {
+        const images = document.querySelectorAll(".image");
+        images.forEach(image => {
+            const tags = image.getAttribute("data-tags").toLowerCase().split(", ");
+            if (tags.some(tag => tag.includes(query))) {
+                image.style.display = "block"; // 顯示匹配的圖片
+            } else {
+                image.style.display = "none"; // 隱藏不匹配的圖片
             }
         });
     }
 
-    // 預設顯示所有圖片
-    renderImages("all");
+    // 監聽標籤搜尋
+    tagSearch.addEventListener("input", function () {
+        const query = tagSearch.value.trim().toLowerCase();
+        filterImages(query);
+    });
 
     // 監聽標籤按鈕點擊
     tagButtons.forEach(button => {
         button.addEventListener("click", () => {
-            const tagText = button.id === "all" ? "all" : button.textContent.replace("#", "");
-            renderImages(tagText);
+            const tagText = button.id === "all" ? "" : button.textContent.replace("#", "");
+            tagSearch.value = tagText; // 在搜尋框填入標籤
+            filterImages(tagText);
         });
     });
+
+    // 初始化載入所有圖片
+    loadImages();
 });
+
 
 // 初始化加载图片
 loadImages();
