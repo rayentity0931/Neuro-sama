@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #5c6471;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+
+.content {
+    position: absolute;
+    width: 100%;
+    top: 10vh;
+    text-align: center;
+    z-index: 1;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+h1 {
+    display: inline-block;
+    background: transparent;
+    padding: 1.5vw 3vw;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: transparent;
+    font-size: clamp(2.3em, 4vw, 5em);
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    -webkit-text-stroke: 1px black;
+    font-family: "Comic Sans MS", "Chalkboard SE", "Arial Rounded MT Bold", cursive;
+    background: linear-gradient(90deg, #ffc2f0, #fca1e5, #ff7ade);
+    background-size: 300% 300%; 
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: gradientAnimation 3s ease infinite;
+}
+
+p {
+    font-size: 1.5vw;
+    color: white;
+    margin-top: 10px;
+}
+
+.groupInThreeTop {
+    margin-top: 23vh;
+}
+
+.NeuroIcon {
+    display: inline-block;
+    background: transparent;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 20px;
+    width: 250px;
+    height: 300px;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: "Comic Sans MS", "Chalkboard SE", "Arial Rounded MT Bold", cursive;
+}
+
+.NeuroIcon .description {
+    padding: 10px;
+    font-size: 1.3em;
+    text-align: center;
+    color: #fff;
+}
+
+.NeuroIcon:hover {
+    border: 3px solid hsl(332, 100%, 87%);
+}
+
+.NeuroIcon img {
+    width: 100%;
+    height: auto;
+    border-radius: 120px;
+}
+
+.groupInThreeTop {
+    text-align: center;
+}
+
+.groupInThree {
+    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+    aside, section, article {
+        width: 100%;
+    }
+}
